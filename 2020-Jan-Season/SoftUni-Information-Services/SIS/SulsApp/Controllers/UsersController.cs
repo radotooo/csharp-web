@@ -27,6 +27,11 @@ namespace SulsApp.Controllers
 
         public HttpResponse Login()
         {
+            if (this.IsUserLoggedIn())
+            {
+                return this.Redirect("/");
+            }
+
             return this.View();
         }
 
@@ -46,6 +51,11 @@ namespace SulsApp.Controllers
 
         public HttpResponse Register()
         {
+            if (this.IsUserLoggedIn())
+            {
+                return this.Error("You are already registered.");
+            }
+
             return this.View();
         }
 
